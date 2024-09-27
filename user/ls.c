@@ -66,6 +66,7 @@ ls(char *path)
         continue;
       }
       printf("%s %d %d %d\n", fmtname(buf), st.type, st.ino, (int) st.size);
+      printf("%d\n", unusedMemory());
     }
     break;
   }

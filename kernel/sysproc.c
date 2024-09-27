@@ -5,6 +5,7 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
+#include "kalloc.h"
 
 uint64
 sys_exit(void)
@@ -97,4 +98,10 @@ sys_hello(void)
 {
   printf("Hello from the kernel!\n");
   return 0;
+}
+
+uint64
+sys_unusedMemory(void)
+{
+  return unusedBytes();
 }
