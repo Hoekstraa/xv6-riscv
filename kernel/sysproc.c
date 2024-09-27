@@ -101,7 +101,7 @@ sys_hello(void)
 }
 
 uint64
-sys_unusedMemory(void)
+sys_kfreepages(void)
 {
-  return unusedBytes();
+  return kfreepages();
 }

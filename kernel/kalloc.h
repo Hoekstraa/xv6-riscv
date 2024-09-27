@@ -1,1 +1,1 @@
-uint64 unusedBytes(void);
+uint64 kfreepages(void);

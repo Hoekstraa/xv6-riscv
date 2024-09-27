@@ -62,7 +62,6 @@ kfree(void *pa)
   r->next = kmem.freelist;
   kmem.freelist = r;
   release(&kmem.lock);
-  // --pageCounter; // Second try
 }
 
 // Allocate one 4096-byte page of physical memory.
@@ -81,12 +80,10 @@ kalloc(void)
 
   if(r) {
     memset((char*)r, 5, PGSIZE); // fill with junk
-    // ++pageCounter; // Second try
   }
   return (void*)r;
 }
 
-// Third try (same results as 2)
 uint64
 kfreepages(void)
 {
@@ -98,19 +95,4 @@ kfreepages(void)
     ++count;
   release(&kmem.lock);
   return count;
-}
-
-uint64
-unusedBytes(void)
-{
-  // Initial try
-  /* return PHYSTOP  // Physical memory limit location */
-  /*   - (uint64)end // Anything before end of kernel memory location isn't part of pages */
-  /*   - (usedPageCounter * PGSIZE); // Remove used pages, as they aren't free anymore */
-
-  // Second try
-  // return -pageCounter * PGSIZE;
-
-  // Third try (same results as 2)
-  return kfreepages() * 4096;
 }

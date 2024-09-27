@@ -37,4 +37,4 @@ entry("sbrk");
 entry("sleep");
 entry("uptime");
 entry("hello");
-entry("unusedMemory");
+entry("kfreepages");
